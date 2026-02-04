@@ -16,35 +16,60 @@ fi
 # Backup
 echo "Creating backup at $BACKUP_DIR..."
 mkdir -p "$BACKUP_DIR"
-for file in ~/.zshrc ~/.zshenv ~/.p10k.zsh; do
-    [[ -f "$file" ]] && cp "$file" "$BACKUP_DIR/"
+for file in ~/.zshrc ~/.zshenv ~/.p10k.zsh ~/.config; do
+    [[ -e "$file" ]] && cp -r "$file" "$BACKUP_DIR/" 2>/dev/null
 done
-[[ -d ~/.scripts ]] && cp -r ~/.scripts "$BACKUP_DIR/"
 
-# Remove old files
-echo "Removing old files..."
+# Remove old symlinks
+echo "Removing old symlinks..."
 rm -f ~/.zshrc ~/.zshenv ~/.p10k.zsh
-rm -rf ~/.scripts
+rm -f ~/.config/aerospace ~/.config/atuin ~/.config/fzf ~/.config/ghostty ~/.config/zed
+rm -f ~/.config/git/config ~/.config/git/ignore ~/.gitconfig ~/.gitignore_global
+rm -f ~/.local/bin/start_work_apps.sh ~/.local/bin/stop_work_apps.sh
 
-# Remove conflicting config files (backup already created)
-echo "Removing conflicting config files..."
-rm -f ~/.config/git/config ~/.config/git/ignore 2>/dev/null
-rm -f ~/.fzf.zsh 2>/dev/null
-rm -rf ~/.config/aerospace 2>/dev/null
-rm -rf ~/.config/atuin 2>/dev/null
-rm -rf ~/.config/ghostty 2>/dev/null
-rm -rf ~/.config/zed 2>/dev/null
-
-# Stow
-echo "Installing with GNU Stow..."
 cd "$DOTFILES_DIR"
 
-for package in zsh p10k fzf git scripts wakatime aerospace atuin ghostty zed; do
-    if [[ -d "$package" ]]; then
-        echo "  Installing $package..."
-        stow -v "$package"
-    fi
-done
+echo "Installing dotfiles..."
+
+# ZSH
+ln -sf "$DOTFILES_DIR/zsh/.zshenv" ~/.zshenv
+ln -sf "$DOTFILES_DIR/zsh/.zshrc" ~/.zshrc
+mkdir -p ~/.config
+ln -sf "$DOTFILES_DIR/zsh/.config/zsh" ~/.config/zsh
+
+# Powerlevel10k
+ln -sf "$DOTFILES_DIR/p10k/.p10k.zsh" ~/.p10k.zsh
+
+# Aerospace
+mkdir -p ~/.config/aerospace
+ln -sf "$DOTFILES_DIR/aerospace/aerospace.toml" ~/.config/aerospace/aerospace.toml
+
+# Atuin
+mkdir -p ~/.config/atuin
+ln -sf "$DOTFILES_DIR/atuin/config.toml" ~/.config/atuin/config.toml
+
+# FZF
+mkdir -p ~/.config/fzf
+ln -sf "$DOTFILES_DIR/fzf/fzf.zsh" ~/.config/fzf/fzf.zsh
+
+# Ghostty
+mkdir -p ~/.config/ghostty
+ln -sf "$DOTFILES_DIR/ghostty/config" ~/.config/ghostty/config
+
+# Git
+mkdir -p ~/.config/git
+ln -sf "$DOTFILES_DIR/git/gitconfig" ~/.config/git/config
+ln -sf "$DOTFILES_DIR/git/gitignore" ~/.config/git/ignore
+
+# Zed
+mkdir -p ~/.config/zed
+ln -sf "$DOTFILES_DIR/zed/keymap.json" ~/.config/zed/keymap.json
+ln -sf "$DOTFILES_DIR/zed/settings.json" ~/.config/zed/settings.json
+
+# Scripts
+mkdir -p ~/.local/bin
+ln -sf "$DOTFILES_DIR/scripts/bin/start_work_apps.sh" ~/.local/bin/start_work_apps.sh
+ln -sf "$DOTFILES_DIR/scripts/bin/stop_work_apps.sh" ~/.local/bin/stop_work_apps.sh
 
 # Setup secrets
 if [[ ! -f ~/.secrets/env.sh ]]; then
@@ -55,7 +80,7 @@ if [[ ! -f ~/.secrets/env.sh ]]; then
     chmod 600 ~/.secrets/env.sh
 fi
 
-# WakaTime config
+# WakaTime
 if [[ ! -f ~/.wakatime.cfg ]]; then
     echo "Setting up WakaTime..."
     echo "[settings]" > ~/.wakatime.cfg

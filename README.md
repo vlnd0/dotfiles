@@ -28,10 +28,9 @@ exec zsh
 ## Usage
 
 ```bash
-make install    # Install all dotfiles
-make update     # Pull latest changes and reinstall
-make uninstall  # Remove all symlinks
-make test       # Test configuration syntax
+./install.sh    # Reinstall dotfiles
+git pull        # Update from GitHub
+exec zsh        # Restart shell
 ```
 
 ## Secrets Management
