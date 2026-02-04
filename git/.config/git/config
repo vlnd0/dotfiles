@@ -1,0 +1,44 @@
+[user]
+	name = Данилов Артем Владимирович
+	email = avdanilov@gid.ru
+
+[core]
+	autocrlf = input
+	excludesfile = ~/.config/git/ignore
+	editor = code --wait
+
+[credential]
+	helper = store --file ~/.secrets/git-credentials
+
+[pull]
+	rebase = false
+
+[push]
+	default = current
+	autoSetupRemote = true
+
+[init]
+	defaultBranch = main
+
+[diff]
+	tool = vscode
+	colorMoved = zebra
+
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+
+[merge]
+	tool = vscode
+	conflictstyle = diff3
+
+[mergetool "vscode"]
+	cmd = code --wait $MERGED
+
+[alias]
+	st = status
+	co = checkout
+	br = branch
+	ci = commit
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	visual = log --oneline --graph --decorate --all

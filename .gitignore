@@ -1,0 +1,24 @@
+# Секреты
+secrets/
+*.secret
+*.private
+*.key
+*_rsa
+.env
+.env.*
+
+# Локальные файлы
+*.local
+*-local.*
+!scripts/.local/
+
+# Kubernetes конфиги с токенами
+kube/.config/kube/configs/*
+!kube/.config/kube/configs/.gitkeep
+
+# MacOS
+.DS_Store
+
+# Временные файлы
+*.swp
+*~

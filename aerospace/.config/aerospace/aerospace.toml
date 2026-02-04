@@ -1,0 +1,298 @@
+# ~/.config/aerospace/aerospace.toml
+# Inspired by agenttank/dotfiles_macos
+
+config-version = 2
+start-at-login = true
+
+# Borders запускается после старта
+after-startup-command = [
+  'exec-and-forget /opt/homebrew/opt/borders/bin/borders active_color=0xFFFFBE69 inactive_color=0xFF494d64 width=6.0'
+]
+
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = ['move-mouse window-lazy-center']
+
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+accordion-padding = 30
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+
+[key-mapping]
+preset = 'qwerty'
+
+[gaps]
+inner.horizontal = 10
+inner.vertical = 10
+outer.left = 10
+outer.bottom = 10
+outer.top = 10
+outer.right = 10
+
+# ╔═══════════════════════════════════════════════════════════════╗
+# ║                      MAIN MODE                                ║
+# ╚═══════════════════════════════════════════════════════════════╝
+
+[mode.main.binding]
+
+# ─── Navigation (vim-style) ───
+alt-h = 'focus --boundaries all-monitors-outer-frame left'
+alt-j = 'focus --boundaries all-monitors-outer-frame down'
+alt-k = 'focus --boundaries all-monitors-outer-frame up'
+alt-l = 'focus --boundaries all-monitors-outer-frame right'
+
+# Arrow alternatives
+alt-left = 'focus --boundaries all-monitors-outer-frame left'
+alt-down = 'focus --boundaries all-monitors-outer-frame down'
+alt-up = 'focus --boundaries all-monitors-outer-frame up'
+alt-right = 'focus --boundaries all-monitors-outer-frame right'
+
+# ─── Move windows ───
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
+
+# ─── Layout ───
+ctrl-alt-cmd-space = 'layout floating tiling'
+alt-f = 'fullscreen'
+alt-slash = 'layout tiles horizontal vertical'
+alt-comma = 'layout accordion horizontal vertical'
+
+# ─── Quick resize ───
+cmd-keypadMinus = 'resize smart -50'
+cmd-keypadPlus = 'resize smart +50'
+alt-minus = 'resize smart -50'
+alt-equal = 'resize smart +50'
+
+# ─── Close ───
+#cmd-q = 'close --quit-if-last-window'
+
+# ─── Open terminal ───
+ctrl-alt-cmd-enter = 'exec-and-forget open -na /Applications/Ghostty.app'
+
+# ╔═══════════════════════════════════════════════════════════════╗
+# ║                    WORKSPACES                                 ║
+# ║  1=Notes  2=Terminal  3=Browser  4=Chat  5=claude             ║
+# ║  6=Сode  7=<empty>  8=<empty>  9=Music  0=Secrets  t=Meeting    ║
+# ╚═══════════════════════════════════════════════════════════════╝
+
+alt-1 = 'workspace --auto-back-and-forth 1'
+alt-2 = 'workspace --auto-back-and-forth 2'
+alt-3 = 'workspace --auto-back-and-forth 3'
+alt-4 = 'workspace --auto-back-and-forth 4'
+alt-5 = 'workspace --auto-back-and-forth 5'
+alt-6 = 'workspace --auto-back-and-forth 6'
+alt-7 = 'workspace --auto-back-and-forth 7'
+alt-8 = 'workspace --auto-back-and-forth 8'
+alt-9 = 'workspace --auto-back-and-forth 9'
+alt-0 = 'workspace --auto-back-and-forth 10'
+alt-t = 'workspace --auto-back-and-forth t'
+
+# ─── Move to workspace ───
+alt-shift-1 = 'move-node-to-workspace 1'
+alt-shift-2 = 'move-node-to-workspace 2'
+alt-shift-3 = 'move-node-to-workspace 3'
+alt-shift-4 = 'move-node-to-workspace 4'
+alt-shift-5 = 'move-node-to-workspace 5'
+alt-shift-6 = 'move-node-to-workspace 6'
+alt-shift-7 = 'move-node-to-workspace 7'
+alt-shift-8 = 'move-node-to-workspace 8'
+alt-shift-9 = 'move-node-to-workspace 9'
+alt-shift-0 = 'move-node-to-workspace 10'
+alt-shift-t = 'move-node-to-workspace t'
+
+# ─── Quick switch ───
+alt-tab = 'workspace-back-and-forth'
+alt-p = 'move-workspace-to-monitor --wrap-around next'
+alt-shift-p = ['move-node-to-monitor --wrap-around next', 'focus-monitor next --wrap-around']
+
+# ╔═══════════════════════════════════════════════════════════════╗
+# ║                    MODE SWITCHING                             ║
+# ╚═══════════════════════════════════════════════════════════════╝
+
+ctrl-alt-cmd-r = [
+  'mode resize',
+  'exec-and-forget borders active_color=0xFFFF6600'  # orange = resize
+]
+
+ctrl-alt-cmd-j = [
+  'mode join',
+  'exec-and-forget borders active_color=0xFF00FF00'  # green = join
+]
+
+ctrl-alt-cmd-s = [
+  'mode service',
+  'exec-and-forget borders active_color=0xFFFF0000'  # red = service
+]
+
+# ╔═══════════════════════════════════════════════════════════════╗
+# ║                    RESIZE MODE                                ║
+# ║  Press h/j/k/l to resize, esc to exit                        ║
+# ╚═══════════════════════════════════════════════════════════════╝
+
+[mode.resize.binding]
+h = 'resize width -50'
+l = 'resize width +50'
+j = 'resize height -50'
+k = 'resize height +50'
+minus = 'resize smart -50'
+equal = 'resize smart +50'
+
+esc = ['mode main', 'exec-and-forget borders active_color=0xFFFFBE69']
+enter = ['mode main', 'exec-and-forget borders active_color=0xFFFFBE69']
+
+# ╔═══════════════════════════════════════════════════════════════╗
+# ║                    JOIN MODE                                  ║
+# ║  Press h/j/k/l to join with neighbor, auto-exits             ║
+# ╚═══════════════════════════════════════════════════════════════╝
+
+[mode.join.binding]
+h = ['join-with left', 'mode main', 'exec-and-forget borders active_color=0xFFFFBE69']
+j = ['join-with down', 'mode main', 'exec-and-forget borders active_color=0xFFFFBE69']
+k = ['join-with up', 'mode main', 'exec-and-forget borders active_color=0xFFFFBE69']
+l = ['join-with right', 'mode main', 'exec-and-forget borders active_color=0xFFFFBE69']
+
+esc = ['mode main', 'exec-and-forget borders active_color=0xFFFFBE69']
+enter = ['mode main', 'exec-and-forget borders active_color=0xFFFFBE69']
+
+# ╔═══════════════════════════════════════════════════════════════╗
+# ║                    SERVICE MODE                               ║
+# ║  esc=reload  r=reset  f=float  backspace=close others        ║
+# ╚═══════════════════════════════════════════════════════════════╝
+
+[mode.service.binding]
+esc = ['reload-config', 'mode main', 'exec-and-forget borders active_color=0xFFFFBE69']
+r = ['flatten-workspace-tree', 'mode main', 'exec-and-forget borders active_color=0xFFFFBE69']
+f = ['layout floating tiling', 'mode main', 'exec-and-forget borders active_color=0xFFFFBE69']
+backspace = ['close-all-windows-but-current', 'mode main', 'exec-and-forget borders active_color=0xFFFFBE69']
+
+# ╔═══════════════════════════════════════════════════════════════╗
+# ║                 AUTO-ASSIGN WINDOWS                           ║
+# ╚═══════════════════════════════════════════════════════════════╝
+
+# 1 = Notes
+[[on-window-detected]]
+if.app-id = 'app.summitnotes'
+run = ['move-node-to-workspace 1']
+
+[[on-window-detected]]
+if.app-id = 'net.shinyfrog.bear'
+run = ['move-node-to-workspace 1']
+
+[[on-window-detected]]
+if.app-id = 'com.lukilabs.lukiapp' # craft
+run = ['move-node-to-workspace 1']
+
+# 2 = Terminal
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = ['move-node-to-workspace 2']
+
+# 3 = Browser (Helium — проверь app-id через: aerospace list-apps | grep -i helium)
+[[on-window-detected]]
+if.app-id = 'app.zen-browser.zen'
+run = ['move-node-to-workspace 3']
+
+[[on-window-detected]]
+if.app-id = 'net.imput.helium'
+run = ['move-node-to-workspace 3']
+
+# 4 = Chat
+[[on-window-detected]]
+if.app-id = 'com.tdesktop.Telegram'
+run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
+if.app-id = 'ru.mail.messenger-biz-avocado-desktop'
+run = ['move-node-to-workspace 4']
+
+
+
+# 5 = claude
+[[on-window-detected]]
+if.app-id = 'com.anthropic.claudefordesktop'
+run = ['move-node-to-workspace 5']
+
+# 6 = Code
+[[on-window-detected]]
+if.app-id = 'dev.zed.Zed'
+run = ['move-node-to-workspace 4']
+
+# 7 = <empty>
+
+
+# 8 = <empty>
+[[on-window-detected]]
+if.app-id = 'com.apple.mail'
+run = ['move-node-to-workspace 8']
+
+# 9 = Music
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = ['move-node-to-workspace 9']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Music'
+run = ['move-node-to-workspace 9']
+
+# 10 = Secrets
+[[on-window-detected]]
+if.app-id = 'com.bitwarden.desktop'
+run = ['move-node-to-workspace 10']
+
+# t = Meeting
+[[on-window-detected]]
+if.app-id = 'us.zoom.xos'
+run = ['move-node-to-workspace t']
+
+# ╔═══════════════════════════════════════════════════════════════╗
+# ║                    FLOATING APPS                              ║
+# ╚═══════════════════════════════════════════════════════════════╝
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.systempreferences'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.toggl.daneel'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.calculator'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Notes'
+run = 'layout floating'
+
+## Памятка
+
+#╔════════════════════════════════════════════════════════╗
+#║  WORKSPACES                                            ║
+#║  cmd-1 Notes    cmd-6 Code                             ║
+#║  cmd-2 Terminal cmd-7 <empty>                          ║
+#║  cmd-3 Browser  cmd-8 <empty>                          ║
+#║  cmd-4 Chat     cmd-9 Music                            ║
+#║  cmd-5 Claude   cmd-0 Secrets   cmd-t Meeting          ║
+#╠════════════════════════════════════════════════════════╣
+#║  MODES (border color = indicator)                      ║
+#║  cmd-r → RESIZE (orange)  hjkl to resize, esc exit     ║
+#║  cmd-j → JOIN (green)     hjkl to join, auto-exit      ║
+#║  cmd-shift-s → SERVICE (red)  esc=reload r=reset       ║
+#╠════════════════════════════════════════════════════════╣
+#║  QUICK                                                 ║
+#║  cmd-tab      back-and-forth                           ║
+#║  cmd-space    toggle float/tile                        ║
+#║  cmd-f        fullscreen                               ║
+#║  cmd-enter    new terminal                             ║
+#╚════════════════════════════════════════════════════════╝

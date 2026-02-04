@@ -1,0 +1,50 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "git_panel": {
+    "tree_view": true
+  },
+  "colorize_brackets": true,
+  "inlay_hints": {
+    "show_background": true,
+    "enabled": true,
+  },
+  "always_treat_brackets_as_autoclosed": false,
+  "toolbar": {
+    "code_actions": true,
+  },
+  "autosave": "on_focus_change",
+  "when_closing_with_no_tabs": "close_window",
+  "git": {
+    "inline_blame": {
+      "show_commit_summary": true,
+    },
+  },
+  "disable_ai": false,
+  "agent": {
+    "play_sound_when_agent_done": true,
+    "always_allow_tool_actions": true,
+    "model_parameters": [],
+  },
+  "vim_mode": false,
+  "helix_mode": false,
+  "icon_theme": "Catppuccin Latte",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+  "base_keymap": "JetBrains",
+  "ui_font_size": 17.0,
+  "buffer_font_size": 16.0,
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Macchiato",
+    "dark": "One Dark",
+  },
+}
