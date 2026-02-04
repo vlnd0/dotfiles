@@ -5,9 +5,15 @@ Personal dotfiles managed with GNU Stow.
 ## Installation
 
 ```bash
-git clone <repo-url> ~/dotfiles
-cd ~/dotfiles
-make install
+# Clone repository
+git clone git@github.com:vlnd0/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+
+# Install all dependencies and dotfiles
+brew bundle && ./install.sh
+
+# Restart shell
+exec zsh
 ```
 
 ## Structure
