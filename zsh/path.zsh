@@ -1,10 +1,8 @@
 # Homebrew
 if [[ -d "/opt/homebrew" ]]; then
     export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
-    export PATH="/opt/homebrew/opt/curl/bin:$PATH"
-    export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
     export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-    export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+    # export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 fi
 
 # User local

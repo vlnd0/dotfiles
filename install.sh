@@ -23,7 +23,7 @@ done
 # Remove old symlinks
 echo "Removing old symlinks..."
 rm -f ~/.zshrc ~/.zshenv ~/.p10k.zsh
-rm -f ~/.config/aerospace ~/.config/atuin ~/.config/fzf ~/.config/ghostty ~/.config/zed
+rm -rf ~/.config/zsh ~/.config/aerospace ~/.config/atuin ~/.config/fzf ~/.config/ghostty ~/.config/zed
 rm -f ~/.config/git/config ~/.config/git/ignore ~/.gitconfig ~/.gitignore_global
 rm -f ~/.local/bin/start_work_apps.sh ~/.local/bin/stop_work_apps.sh
 
@@ -32,10 +32,10 @@ cd "$DOTFILES_DIR"
 echo "Installing dotfiles..."
 
 # ZSH
+mkdir -p ~/.config
 ln -sf "$DOTFILES_DIR/zsh/.zshenv" ~/.zshenv
 ln -sf "$DOTFILES_DIR/zsh/.zshrc" ~/.zshrc
-mkdir -p ~/.config
-ln -sf "$DOTFILES_DIR/zsh/.config/zsh" ~/.config/zsh
+ln -sf "$DOTFILES_DIR/zsh" ~/.config/zsh
 
 # Powerlevel10k
 ln -sf "$DOTFILES_DIR/p10k/.p10k.zsh" ~/.p10k.zsh
@@ -76,7 +76,7 @@ if [[ ! -f ~/.secrets/env.sh ]]; then
     echo "Setting up secrets template..."
     mkdir -p ~/.secrets
     chmod 700 ~/.secrets
-    cp zsh/.config/zsh/secrets.zsh.template ~/.secrets/env.sh
+    cp zsh/secrets.zsh.template ~/.secrets/env.sh
     chmod 600 ~/.secrets/env.sh
 fi
 
