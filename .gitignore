@@ -22,3 +22,8 @@ kube/.config/kube/configs/*
 # Временные файлы
 *.swp
 *~
+
+# ZSH cache files
+.zcompdump*
+.zsh_history
+*.zwc
