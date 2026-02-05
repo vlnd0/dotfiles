@@ -23,7 +23,7 @@ done
 # Remove old symlinks
 echo "Removing old symlinks..."
 rm -f ~/.zshrc ~/.zshenv ~/.p10k.zsh
-rm -rf ~/.config/zsh ~/.config/aerospace ~/.config/atuin ~/.config/fzf ~/.config/ghostty ~/.config/zed
+rm -rf ~/.config/zsh ~/.config/aerospace ~/.config/atuin ~/.config/fzf ~/.config/ghostty ~/.config/zed ~/.config/lazygit
 rm -f ~/.config/git/config ~/.config/git/ignore ~/.gitconfig ~/.gitignore_global
 rm -f ~/.local/bin/start_work_apps.sh ~/.local/bin/stop_work_apps.sh
 
@@ -60,6 +60,10 @@ ln -sf "$DOTFILES_DIR/ghostty/config" ~/.config/ghostty/config
 mkdir -p ~/.config/git
 ln -sf "$DOTFILES_DIR/git/gitconfig" ~/.config/git/config
 ln -sf "$DOTFILES_DIR/git/gitignore" ~/.config/git/ignore
+
+# Lazygit
+mkdir -p ~/.config/lazygit
+ln -sf "$DOTFILES_DIR/lazygit/config.yml" ~/.config/lazygit/config.yml
 
 # Zed
 mkdir -p ~/.config/zed

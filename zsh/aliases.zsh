@@ -55,3 +55,6 @@ alias whisper='whisper-cli -m $WHISPER_MODEL'
 
 # System
 alias reload='exec zsh'
+
+# Additional
+alias lg='lazygit'
